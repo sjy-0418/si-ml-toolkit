@@ -44,3 +44,39 @@ def insertion_loss_db(network: skrf.Network, freq_hz: float) -> float:
     mag_at_freq = np.interp(freq_hz, freqs, mag_linear)
 
     return 20.0 * np.log10(mag_at_freq)
+
+
+def return_loss_db(network: skrf.Network, freq_hz: float) -> float:
+    """Extract return loss (|S11|) at a given frequency.
+
+    Args:
+        network: A skrf.Network object (1-port or more).
+        freq_hz: Target frequency in Hz (e.g. 1.6e9 for DDR4 Nyquist).
+
+    Returns:
+        Return loss at freq_hz in dB (20 * log10(|S11|)).
+        Negative values indicate reflected power is below incident (typical).
+
+    Raises:
+        ValueError: If freq_hz is outside the network's measured frequency range.
+    """
+    freqs = network.f
+    f_min, f_max = freqs[0], freqs[-1]
+
+    if not (f_min <= freq_hz <= f_max):
+        raise ValueError(
+            f"freq_hz={freq_hz:.4e} Hz is outside the measured range "
+            f"[{f_min:.4e}, {f_max:.4e}] Hz."
+        )
+
+    # S11: complex reflection coefficient (port 1 reflected / port 1 incident)
+    # s[:, 0, 0] → all freq points, row=0 (port 1), col=0 (port 1)
+    s11_complex = network.s[:, 0, 0]
+
+    # Interpolate in linear magnitude domain, NOT in dB.
+    # Same reason as insertion_loss_db: dB is logarithmic, so linear
+    # interpolation between dB values gives the wrong physical result.
+    mag_linear = np.abs(s11_complex)
+    mag_at_freq = np.interp(freq_hz, freqs, mag_linear)
+
+    return 20.0 * np.log10(mag_at_freq)
