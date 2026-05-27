@@ -11,11 +11,17 @@ High-speed digital interfaces in AI accelerators, HBM memory, and modern SoCs ar
 ## Quick example
 
 ```python
-from siml.io import load_s2p
-from siml.viz import plot_s_db
+from siml import load_s2p, plot_s_db, insertion_loss_db, return_loss_db
 
 net = load_s2p("data/raw/ring_slot.s2p")
-fig = plot_s_db(net, parameters=["s11", "s21"], save_path="channel.png")
+
+# Visualize
+plot_s_db(net, parameters=["s11", "s21"], save_path="channel.png")
+
+# Extract features at DDR4 Nyquist (1.6 GHz)
+il = insertion_loss_db(net, freq_hz=1.6e9)
+rl = return_loss_db(net, freq_hz=1.6e9)
+print(f"IL: {il:.2f} dB, RL: {rl:.2f} dB")
 ```
 
 ## Features
@@ -24,11 +30,10 @@ Currently working:
 
 - 📂 **Touchstone parsing** — Load `.s1p`, `.s2p`, `.s4p` files via `scikit-rf`
 - 📈 **S-parameter visualization** — Plot in dB scale, with selectable parameters
-- ✅ **Tested** — Unit tests for I/O and visualization layers
+- 🔬 **Feature extraction** — Insertion loss, return loss at target frequencies
+- ✅ **Tested** — 20+ unit tests covering happy path, edge cases, and domain invariants
 
 Planned:
-
-- 🔬 **Feature extraction** — Insertion loss, return loss, TDR-based features
 - 👁️ **Eye diagram classifier** — CNN model to predict pass/fail from eye diagram images
 - 📍 **Impedance discontinuity locator** — Regression model to identify location of impedance mismatches
 - 📊 **Streamlit dashboard** — Upload a Touchstone file, get instant ML-driven analysis
