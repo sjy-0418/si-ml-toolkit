@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="458" viewBox="0 0 860 458">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="34.0" font-family="Arial, sans-serif" font-size="22" text-anchor="start" fill="#172033">Feature Influence on Failure Risk</text>
+<line x1="220" y1="46" x2="808" y2="46" stroke="#d7dde8"/>
+<line x1="514.0" y1="38" x2="514.0" y2="426" stroke="#9aa7bb" stroke-dasharray="4 4"/>
+<text x="32.0" y="81.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">temperature_c</text>
+<rect x="514.0" y="64.0" width="77.3" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="81.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.209</text>
+<text x="32.0" y="123.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">impedance_error_ohm</text>
+<rect x="514.0" y="106.0" width="80.4" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="123.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.218</text>
+<text x="32.0" y="165.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">supply_ripple_mv</text>
+<rect x="514.0" y="148.0" width="94.8" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="165.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.257</text>
+<text x="32.0" y="207.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">jitter_rms_ps</text>
+<rect x="514.0" y="190.0" width="149.7" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="207.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.406</text>
+<text x="32.0" y="249.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">skew_ps</text>
+<rect x="514.0" y="232.0" width="157.6" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="249.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.427</text>
+<text x="32.0" y="291.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">eye_width_ui</text>
+<rect x="312.2" y="274.0" width="201.8" height="24" rx="4" fill="#2563eb"/>
+<text x="820.0" y="291.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">-0.547</text>
+<text x="32.0" y="333.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">interface_speed_gbps</text>
+<rect x="514.0" y="316.0" width="271.5" height="24" rx="4" fill="#dc2626"/>
+<text x="820.0" y="333.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">0.736</text>
+<text x="32.0" y="375.0" font-family="Arial, sans-serif" font-size="13" text-anchor="start" fill="#172033">eye_height_mv</text>
+<rect x="228.0" y="358.0" width="286.0" height="24" rx="4" fill="#2563eb"/>
+<text x="820.0" y="375.0" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#172033">-0.775</text>
+</svg>

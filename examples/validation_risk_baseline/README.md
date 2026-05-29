@@ -26,6 +26,12 @@ The training script:
 5. Tunes an operating threshold for high-recall validation screening.
 6. Writes a Markdown model report and CSV outputs.
 
+The visualization script:
+
+1. Rebuilds the same deterministic baseline run.
+2. Generates SVG charts that GitHub can render directly.
+3. Shows class balance, feature influence, threshold trade-offs, and the relationship between eye height and predicted failure risk.
+
 ## Features
 
 The synthetic dataset includes:
@@ -52,6 +58,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python .\train_signal_integrity_model.py
+python .\visualize_results.py
 ```
 
 Outputs are written to `outputs/`:
@@ -59,6 +66,7 @@ Outputs are written to `outputs/`:
 - `signal_integrity_dataset.csv`
 - `predictions.csv`
 - `model_report.md`
+- `figures/*.svg`
 
 ## Current Baseline Result
 
@@ -71,6 +79,28 @@ With the fixed random seed in the script:
 - High-recall threshold: `0.43`
 - High-recall recall: `0.901`
 
+## Visual Results
+
+### Validation Class Balance
+
+![Validation class balance](outputs/figures/class_balance.svg)
+
+### Feature Influence
+
+![Feature influence](outputs/figures/feature_influence.svg)
+
+### Precision/Recall Threshold Trade-off
+
+![Precision recall threshold](outputs/figures/precision_recall_threshold.svg)
+
+### Eye Height vs Predicted Failure Risk
+
+![Eye height risk scatter](outputs/figures/eye_height_risk_scatter.svg)
+
+## Study Notes
+
+For the learning path behind this example, see [learning_notes.md](learning_notes.md).
+
 ## Portfolio Message
 
 > I can translate hardware validation problems into measurable ML tasks and build models that support engineering decisions under real system constraints.
@@ -79,7 +109,6 @@ With the fixed random seed in the script:
 
 1. Replace the synthetic dataset with public eye-diagram, PCB, wafer, or sensor-quality data.
 2. Add a scikit-learn baseline and compare it against the NumPy implementation.
-3. Add feature importance and threshold trade-off visualization.
+3. Add ROC/PR-AUC metrics and compare threshold choices.
 4. Package the model as a small FastAPI inference service.
 5. Add ONNX or edge-deployment benchmarking for a hardware-aware AI track.
-
