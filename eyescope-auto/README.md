@@ -27,6 +27,8 @@ EyeScope Auto demonstrates the validation workflow expected in a semiconductor l
 - Overall PASS/FAIL decision logic
 - Rule-based diagnosis for low eye height, narrow eye width, and high jitter
 - Markdown report generation with an eye-diagram plot
+- Batch validation across voltage, temperature, and timing corners
+- CSV and Markdown regression summaries for reviewable validation evidence
 - Unit tests for metric calculation and pass/fail behavior
 
 ## Architecture
@@ -34,11 +36,14 @@ EyeScope Auto demonstrates the validation workflow expected in a semiconductor l
 ```text
 eyescope-auto/
 ├── data/sample_eye.csv          # Example oscilloscope capture
+├── data/batch_manifest.csv      # Example validation corner matrix
 ├── eyescope/parser.py           # CSV loading and validation
 ├── eyescope/metrics.py          # Eye height, eye width, jitter extraction
 ├── eyescope/mask.py             # Threshold checks and diagnosis rules
 ├── eyescope/report.py           # Markdown and plot reporting
+├── eyescope/batch.py            # Batch validation and regression summary
 ├── scripts/run_analysis.py      # Command-line validation flow
+├── scripts/run_batch.py         # Batch validation flow
 ├── reports/sample_report.md     # Example generated report
 └── tests/test_metrics.py        # Unit tests
 ```
@@ -75,6 +80,12 @@ Run with custom limits:
 python scripts/run_analysis.py --min-eye-height 0.50 --min-eye-width 0.60 --max-jitter 0.025
 ```
 
+Run a batch validation matrix:
+
+```bash
+python scripts/run_batch.py
+```
+
 Run tests:
 
 ```bash
@@ -92,6 +103,22 @@ Report written to: reports/sample_report.md
 ```
 
 The generated report includes measured values, configured limits, pass/fail status, threshold crossing context, and rule-based diagnosis.
+
+## Batch Validation Example
+
+`data/batch_manifest.csv` defines a small validation matrix:
+
+- nominal condition
+- low-voltage margin check
+- high-temperature clock/jitter check
+- tight timing-mask check
+
+The batch flow produces:
+
+- `reports/batch_summary.csv`
+- `reports/batch_report.md`
+
+This is closer to how validation teams review repeated measurements across voltage, temperature, and timing corners.
 
 ## Engineering Background
 
@@ -120,7 +147,7 @@ These rules are intentionally transparent so validation engineers can tune them 
 - Add support for instrument-specific CSV formats from Tektronix, Keysight, and LeCroy oscilloscopes
 - Add mask polygon checking for standard-specific compliance masks
 - Export reports to HTML and PDF
-- Add batch regression across voltage, temperature, and process corners
+- Add process-corner metadata and trend charts across multiple batch runs
 - Integrate SCPI-based instrument control for automated lab capture
 - Add richer jitter decomposition, including random and deterministic jitter estimates
 
