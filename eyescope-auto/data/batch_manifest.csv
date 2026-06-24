@@ -1,0 +1,5 @@
+capture_id,corner,input,temperature_c,voltage_v,min_eye_height_v,min_eye_width_ui,max_jitter_ui
+nominal_25c,Nominal,data/sample_eye.csv,25,1.00,0.45,0.55,0.035
+low_voltage_margin,Low voltage margin,data/sample_eye.csv,25,0.90,1.00,0.55,0.035
+high_temp_clock,High temperature clock,data/sample_eye.csv,95,1.00,0.45,0.55,0.005
+tight_timing_mask,Tight timing mask,data/sample_eye.csv,25,1.00,0.45,0.62,0.035
